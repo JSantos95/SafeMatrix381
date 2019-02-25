@@ -108,40 +108,27 @@ ostream& operator<<(ostream& os, SA<T> s){
 
 
 int main(){
-	/*
-	SA<int> a(10);
-    
-	int i;
-	for(i=0;i<10;i++)
-		a[i]=i;
-
-	cout<<"printing using []"<<endl;
-
-	for( i=0;i<10;i++)
-		cout<<a[i]<<endl;
-
-	cout<<"and now with overloaded <<"<<endl;
-	cout<<a;
-	*/
 	
-	//create two SA in b;
+	//create two SA in SA m1 and m2;
 	SA<SA<int>> m1(2);
 	SA<SA<int>> m2(2);
-	SA<int> c1(2); 
-	SA<int> c2(2);
 	
+	//two rows for our matrix 
+	SA<int> r1(2); 
+	SA<int> r2(2);
 	for(int i = 0; i < 2; i++){
-		c1[i] = i+1;
-		c2[i] = i+5;
+		r1[i] = i+1;
+		r2[i] = i+5;
 	}
-		
-	m1[0] = c1;
-	m1[1] = c2;
-	m2[0] = c2;
-	m2[1] = c1;
 	
-	SA<SA<int>> product = m2;
+	//filling the Matrix	
+	m1[0] = r1;
+	m1[1] = r2;
+	m2[0] = r2;
+	m2[1] = r1;
+	
 	//matrix multiplcation 
+	SA<SA<int>> product = m2;
 	for(int i = 0; i < 2; i++){
 		for (int j = 0; j < 2; j++){
 			product[i][j] = (m1[i][j] * m2[i][j]) + (m1[i][(j+1)%2] * m2[(i+1)%2][j]);
@@ -149,7 +136,6 @@ int main(){
 	}
 	
 	cout << product; 
-	
 	
 	system("pause");
 	return 0;
